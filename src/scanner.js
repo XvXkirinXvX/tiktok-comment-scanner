@@ -1,12 +1,4 @@
-const KEYWORDS = {
-  sexual: [
-    "mommy",
-    "step on me",
-    "breed me",
-    "smash",
-    "would"
-  ]
-};
+const KEYWORDS = require("../keywords.json");
 
 function scanComment(comment) {
   const text = comment.toLowerCase();
@@ -26,14 +18,9 @@ function scanComment(comment) {
 
   return {
     comment,
-    category:
-      matches.length > 0
-        ? matches[0].category.toUpperCase()
-        : "SAFE",
-    confidence:
-      matches.length > 0
-        ? 90
-        : 100,
+    category: matches.length
+      ? matches[0].category.toUpperCase()
+      : "SAFE",
     keywords: matches.map(m => m.keyword)
   };
 }
